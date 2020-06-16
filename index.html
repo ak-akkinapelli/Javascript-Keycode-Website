@@ -19,18 +19,5 @@
 			</div>
 		</div>
 	</body>
-	<script>
-		function showkey(e) {
-			// display key code on screen
-			document.querySelector("#value").innerHTML = e.keyCode;
-			// display grahic button on screen
-			if (e.key !== " ") document.querySelector("#key").innerHTML = e.key;
-			else document.querySelector("#key").innerHTML = e.code;
-			//hide pre data
-			document.querySelector("#description").style.display = "none";
-			document.querySelector(".card").style.display = "block";
-			document.querySelector(".card").style.left = "575px";
-		}
-		window.addEventListener("keydown", showkey);
-	</script>
+	<script src="./app.js"></script>
 </html>
