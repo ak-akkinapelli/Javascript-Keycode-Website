@@ -1,18 +1,27 @@
-function showkey(e) {
-	// display key code on screen
-	let value = '#value'
-	let key = '#key'
-	let description = '#description'
-	let card = '.card'
-	document.querySelector(value).innerHTML = e.keyCode
-	// display grahic button on screen
-	if (e.key !== ' ') {
-		document.querySelector(key).innerHTML = e.key
-	} else {
-		document.querySelector(key).innerHTML = e.code
-	}
-	//hide pre data
-	document.querySelector(description).style.display = 'none'
-	document.querySelector(card).style.display = 'inline-block'
+const keyOutputEl = document.getElementById('keyOutput')
+const keyEl = document.getElementById('key')
+const keyCodeEl = document.getElementById('keyCode')
+const keyValueEl = document.getElementById('keyValue')
+
+function keyup() {
+	key.classList.remove('pressed')
 }
-window.addEventListener('keydown', showkey)
+
+function updateKey({ code, key, keyCode }) {
+	keyEl.classList.add('pressed')
+	keyCodeEl.textContent = keyCode
+	if (key !== ' ') {
+		keyValueEl.textContent = key
+	} else {
+		keyValueEl.textContent = code
+	}
+}
+
+function unhideKeyOutput() {
+	keyOutputEl.classList.remove('hide')
+	document.body.removeEventListener('keydown', unhideKeyOutput)
+}
+
+document.body.addEventListener('keydown', unhideKeyOutput)
+document.body.addEventListener('keydown', updateKey)
+document.body.addEventListener('keyup', keyup)
